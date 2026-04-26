@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patrones Estructurales</title>
+    <style>
+        :root {
+            --bg-color: #1e1e2e;
+            --text-color: #cdd6f4;
+            --accent: #cba6f7;
+            --code-bg: #181825;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .slide-container {
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .slide {
+            position: absolute;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            width: 80%;
+            max-width: 900px;
+            pointer-events: none;
+        }
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        h1, h2 { color: var(--accent); }
+        pre {
+            background-color: var(--code-bg);
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid var(--accent);
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+            background: rgba(0,0,0,0.2);
+        }
+        button {
+            background-color: var(--accent);
+            color: #11111b;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover { background-color: #b4befe; }
+        .industry-tags span {
+            background: #313244;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slide-container">
+        <div class="slide active">
+            <h1>PATRONES ESTRUCTURALES [cite: 3]</h1>
+            <p><strong>Ingeniería en Diseño [cite: 1]</strong></p>
+            <p>Profesora: MARES ROMERO MA. EUGENIA [cite: 2]</p>
+            <br>
+            <h3>Integrantes:</h3>
+            <ul>
+                <li>OJEDA GARCIA ALBERTO </li>
+                <li>PEDRAZA BENTA MIGUEL ANGEL </li>
+                <li>SOLIS GARCILAZO SAMUEL </li>
+            </ul>
+        </div>
+
+        <div class="slide">
+            <h2>¿Qué son los Patrones Estructurales? [cite: 5]</h2>
+            <p>Son el lenguaje común que usan los ingenieros de software en todo el mundo[cite: 6].</p>
+            <p>Describen cómo ensamblar objetos y clases en estructuras más grandes, al tiempo que se mantienen esas estructuras flexibles y eficientes[cite: 7].</p>
+            <p>En resumen: Son soluciones probadas a problemas recurrentes de composición de código[cite: 8].</p>
+        </div>
+
+        <div class="slide">
+            <h2>1. Decorator (Wrapper) [cite: 10, 26]</h2>
+            <p>Añade comportamientos a objetos envolviéndolos en capas, sin tocar su código original. Como poner ropa encima de ropa[cite: 11].</p>
+            <p><strong>Analogía:</strong> Ponerse ropa. Un suéter extiende tu comportamiento "tienes frío", una chaqueta añade otra capa. Puedes quitarte capas sin afectar el resto[cite: 35, 36, 37, 38, 39].</p>
+            <div class="industry-tags"><strong>Industria:</strong> <span>Uber (Añade tokens, red, seguridad al viaje) [cite: 41, 42]</span></div>
+            <pre><code>
+class CafeBase:
+    def costo(self): return 20.0  #[cite: 31]
+
+class DecoradorLeche:
+    def __init__(self, cafe):
+        self.cafe = cafe
+    def costo(self):
+        return self.cafe.costo() + 5.0
+
+mi_cafe = CafeBase()
+cafe_con_leche = DecoradorLeche(mi_cafe) #[cite: 31]
+            </code></pre>
+        </div>
+
+        <div class="slide">
+            <h2>2. Facade [cite: 17, 43]</h2>
+            <p>Proporciona una interfaz simplificada a una librería, un framework o conjunto complejo de clases[cite: 44, 45, 46, 47]. Oculta la complejidad[cite: 47].</p>
+            <p><strong>Analogía:</strong> Como un call center. No necesitas conocer a los 15 departamentos; hablas con una sola persona que coordina todo[cite: 48, 49, 50].</p>
+            <div class="industry-tags"><strong>Industria:</strong> <span>Mercado Pago [cite: 101]</span> <span>Stripe [cite: 100]</span></div>
+            <pre><code>
+class FachadaTienda: #[cite: 72]
+    def __init__(self):
+        self.inv = Inventario() #[cite: 78]
+        self.banco = Banco() #[cite: 80]
+        self.envio = Envio() #[cite: 81]
+
+    def comprar_articulo(self): #[cite: 88]
+        if self.inv.hay_stock(): #[cite: 89]
+            self.banco.procesar_pago() #[cite: 90]
+            self.envio.enviar_paquete() #[cite: 91]
+            
+mi_tienda = FachadaTienda() #[cite: 96]
+mi_tienda.comprar_articulo() #[cite: 98]
+            </code></pre>
+        </div>
+
+        <div class="slide">
+            <h2>3. Flyweight [cite: 13, 102]</h2>
+            <p>Optimiza el consumo de memoria RAM compartiendo datos comunes entre múltiples objetos[cite: 104, 105, 106, 107, 108]. Se mantiene una única copia compartida[cite: 116].</p>
+            <p><strong>Analogía:</strong> Los sellos. No fabricas mil moldes para marcar mil hojas; usas un solo molde y cambias el papel[cite: 124, 125].</p>
+            <pre><code>
+class Fabrica: #[cite: 118]
+    _sello = None #[cite: 131]
+    
+    @classmethod #[cite: 132]
+    def obtener_sello(cls): #[cite: 133]
+        if not cls._sello: cls._sello = Sello() #[cite: 134]
+        return cls._sello #[cite: 134]
+
+sello = Fabrica.obtener_sello() #[cite: 136]
+for i in range(1000): #[cite: 137]
+    print(f"Hoja {i} sellada") #[cite: 138]
+            </code></pre>
+        </div>
+
+        <div class="slide">
+            <h2>4. Proxy [cite: 21, 140]</h2>
+            <p>Proporciona un sustituto, marcador de posición o representante para controlar el acceso a otro objeto. Puede retrasar la carga (Lazy loading)[cite: 141, 142, 25].</p>
+            <p><strong>Analogía:</strong> Un Asistente. Recibe peticiones y solo te pasa con el jefe si tienes cita o es urgente[cite: 143, 144, 145].</p>
+            <div class="industry-tags"><strong>Industria:</strong> <span>Netflix [cite: 179]</span> <span>AWS [cite: 180]</span></div>
+            <pre><code>
+class AsistenteProxy: #[cite: 156]
+    def __init__(self): #[cite: 170]
+        self.directivo = None #[cite: 171]
+        
+    def peticion(self, urgente): #[cite: 172]
+        if urgente: #[cite: 173]
+            if not self.directivo: self.directivo = DirectivoReal() #[cite: 175]
+            self.directivo.atender() #[cite: 175]
+
+proxy = AsistenteProxy() #[cite: 168]
+proxy.peticion(urgente=True) #[cite: 177]
+            </code></pre>
+        </div>
+        
+        <div class="slide">
+            <h1 style="text-align: center; font-size: 4em;">GRACIAS POR SU ATENCIÓN [cite: 181]</h1>
+        </div>
+
+    </div>
+
+    <div class="controls">
+        <button onclick="cambiarSlide(-1)">❮ Anterior</button>
+        <button onclick="cambiarSlide(1)">Siguiente ❯</button>
+    </div>
+
+    <script>
+        let slideActual = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function cambiarSlide(direccion) {
+            slides[slideActual].classList.remove('active');
+            slideActual = slideActual + direccion;
+            
+            if (slideActual >= slides.length) slideActual = 0;
+            if (slideActual < 0) slideActual = slides.length - 1;
+            
+            slides[slideActual].classList.add('active');
+        }
+        
+        // Permitir navegar con las flechas del teclado
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') cambiarSlide(1);
+            if (event.key === 'ArrowLeft') cambiarSlide(-1);
+        });
+    </script>
+</body>
+</html>
