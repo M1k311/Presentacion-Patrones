@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patrones Estructurales - Ingeniería de Software</title>
+    <title>Patrones Estructurales - UPIICSA</title>
     <style>
         :root {
             --bg-color: #11111b;
@@ -18,7 +18,7 @@
         }
         body {
             margin: 0;
-            font-family: 'Lexend', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             display: flex;
@@ -49,18 +49,17 @@
             overflow-y: auto;
         }
         .slide.active { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        h1 { color: var(--accent); font-size: 2.8em; text-align: center; margin-bottom: 10px; }
+        h1 { color: var(--accent); font-size: 3em; text-align: center; margin-bottom: 10px; }
         h2 { color: var(--accent); border-left: 5px solid var(--accent); padding-left: 15px; margin-top: 0; }
         .grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
         .section-title { font-weight: bold; color: var(--accent-hover); text-transform: uppercase; font-size: 0.9em; margin-bottom: 8px; display: block; }
-        .analogy-box { background: rgba(137, 180, 250, 0.1); padding: 15px; border-radius: 8px; font-style: italic; border: 1px dashed var(--accent); }
-        .industry-box { margin-top: 15px; }
+        .analogy-box { background: rgba(137, 180, 250, 0.1); padding: 15px; border-radius: 8px; font-style: italic; border: 1px dashed var(--accent); margin-top: 10px; }
         .industry-tag { background: #313244; padding: 4px 10px; border-radius: 5px; font-size: 0.85em; margin-right: 5px; color: var(--success); border: 1px solid #45475a; }
         pre {
             background-color: var(--code-bg);
             padding: 20px;
             border-radius: 10px;
-            font-family: 'Fira Code', monospace;
+            font-family: 'Courier New', Courier, monospace;
             font-size: 0.85em;
             margin: 0;
             border: 1px solid #313244;
@@ -69,7 +68,6 @@
         button { background: var(--accent); color: #11111b; border: none; padding: 12px 28px; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: 700; transition: 0.3s; }
         button:hover { background: var(--accent-hover); transform: scale(1.05); }
         
-        /* Quiz */
         .quiz-container { text-align: center; }
         .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
         .option-btn { background: #313244; color: white; padding: 18px; border-radius: 8px; }
@@ -86,10 +84,11 @@
             <div style="text-align: center; margin-top: 30px;">
                 <p style="font-size: 1.4em; color: var(--sub-text);">Ingeniería en Diseño | UPIICSA</p>
                 <p>Profesora: <strong>Mares Romero Ma. Eugenia</strong></p>
-                <div style="margin-top: 50px; display: flex; justify-content: space-around;">
-                    <div><span class="section-title">Líder técnico</span><br>Pedraza Venta Miguel Ángel</div>
-                    <div><span class="section-title">Arquitectura</span><br>Ojeda García Alberto</div>
-                    <div><span class="section-title">Desarrollo</span><br>Solís Garcilazo Samuel</div>
+                <div style="margin-top: 50px;">
+                    <h3 style="color: var(--accent);">Integrantes:</h3>
+                    <p>Pedraza Venta Miguel Ángel</p>
+                    <p>Ojeda García Alberto</p>
+                    <p>Solís Garcilazo Samuel</p>
                 </div>
             </div>
         </div>
@@ -99,12 +98,12 @@
             <p>Los patrones estructurales nos enseñan a ensamblar objetos y clases en estructuras más grandes, manteniendo el sistema flexible y eficiente.</p>
             <div class="grid-info">
                 <div>
-                    <span class="section-title">Problema Recurrente</span>
-                    <p>Cuando un sistema crece, las relaciones entre clases se vuelven rígidas. La herencia tradicional crea "explosión de clases" difíciles de mantener.</p>
+                    <span class="section-title">El Problema</span>
+                    <p>A medida que un sistema crece, las relaciones entre clases se vuelven rígidas. La herencia tradicional crea jerarquías difíciles de mantener.</p>
                 </div>
                 <div>
-                    <span class="section-title">Solución de Diseño</span>
-                    <p>Utilizar la <strong>composición</strong> para envolver objetos o crear fachadas que oculten la complejidad interna del sistema.</p>
+                    <span class="section-title">La Solución</span>
+                    <p>Utilizar la <strong>composición</strong> para envolver objetos o crear fachadas que simplifiquen la interacción entre componentes.</p>
                 </div>
             </div>
         </div>
@@ -113,14 +112,14 @@
             <h2>1. Decorator (Wrapper)</h2>
             <div class="grid-info">
                 <div>
-                    <span class="section-title">¿Qué es?</span>
-                    <p>Añade responsabilidades adicionales a un objeto de forma dinámica sin modificar su código base. Es una alternativa flexible a la herencia.</p>
+                    <span class="section-title">Concepto</span>
+                    <p>Añade responsabilidades adicionales a un objeto de forma dinámica. Es la alternativa ideal para evitar la "explosión de clases".</p>
                     <div class="analogy-box">
                         <strong>Analogía:</strong> Como ponerse ropa. Un suéter extiende tu comportamiento si tienes frío, una chaqueta añade otra capa. Puedes quitar capas sin afectarte a ti mismo.
                     </div>
-                    <div class="industry-box">
+                    <div style="margin-top: 15px;">
                         <span class="section-title">Industria</span>
-                        <span class="industry-tag">Uber</span> <span class="industry-tag">Java I/O Streams</span>
+                        <span class="industry-tag">Uber</span> <span class="industry-tag">Java I/O</span>
                     </div>
                 </div>
                 <pre><code>class CafeBase:
@@ -132,7 +131,7 @@ class DecoradorLeche:
     def costo(self):
         return self.cafe.costo() + 5.0
 
-# Uso dinámico
+# Cliente envuelve el objeto base
 mi_pedido = DecoradorLeche(CafeBase())</code></pre>
             </div>
         </div>
@@ -141,12 +140,12 @@ mi_pedido = DecoradorLeche(CafeBase())</code></pre>
             <h2>2. Facade (Fachada)</h2>
             <div class="grid-info">
                 <div>
-                    <span class="section-title">¿Qué es?</span>
-                    <p>Proporciona una interfaz simplificada a una biblioteca, un framework o cualquier conjunto complejo de clases de un subsistema.</p>
+                    <span class="section-title">Concepto</span>
+                    <p>Proporciona una interfaz unificada y simple para un subsistema complejo de clases, ocultando la lógica interna al cliente.</p>
                     <div class="analogy-box">
-                        <strong>Analogía:</strong> Como un operador de Call Center. No necesitas conocer a los 15 departamentos internos; hablas con una persona que coordina todo por ti.
+                        <strong>Analogía:</strong> Como un operador de Call Center. No necesitas conocer a los 15 departamentos internos; hablas con una persona que coordina todo.
                     </div>
-                    <div class="industry-box">
+                    <div style="margin-top: 15px;">
                         <span class="section-title">Industria</span>
                         <span class="industry-tag">Stripe</span> <span class="industry-tag">Mercado Pago</span>
                     </div>
@@ -168,14 +167,14 @@ mi_pedido = DecoradorLeche(CafeBase())</code></pre>
             <h2>3. Flyweight (Peso Ligero)</h2>
             <div class="grid-info">
                 <div>
-                    <span class="section-title">¿Qué es?</span>
-                    <p>Permite mantener más objetos en la memoria RAM compartiendo las partes comunes del estado entre varios objetos en lugar de mantener todos los datos en cada uno.</p>
+                    <span class="section-title">Concepto</span>
+                    <p>Optimiza el uso de RAM compartiendo datos comunes (estado intrínseco) entre múltiples objetos similares en lugar de duplicarlos.</p>
                     <div class="analogy-box">
-                        <strong>Analogía:</strong> Los sellos. No fabricas mil moldes para marcar mil hojas; usas un solo molde y solo cambias de lugar el papel para ahorrar material.
+                        <strong>Analogía:</strong> Los sellos. No fabricas mil moldes para marcar mil hojas; usas un solo molde y solo cambias el papel para ahorrar material y espacio.
                     </div>
-                    <div class="industry-box">
+                    <div style="margin-top: 15px;">
                         <span class="section-title">Industria</span>
-                        <span class="industry-tag">Google Maps</span> <span class="industry-tag">Adobe Acrobat</span>
+                        <span class="industry-tag">Google Maps</span> <span class="industry-tag">PDF Readers</span>
                     </div>
                 </div>
                 <pre><code>class Fabrica:
@@ -186,7 +185,7 @@ mi_pedido = DecoradorLeche(CafeBase())</code></pre>
             cls._sello = SelloPesado()
         return cls._sello
 
-# Mil hojas, una sola imagen en RAM
+# Miles de marcas, un solo objeto en RAM
 sello = Fabrica.obtener_sello()</code></pre>
             </div>
         </div>
@@ -195,12 +194,12 @@ sello = Fabrica.obtener_sello()</code></pre>
             <h2>4. Proxy (Intermediario)</h2>
             <div class="grid-info">
                 <div>
-                    <span class="section-title">¿Qué es?</span>
-                    <p>Proporciona un sustituto o marcador de posición para otro objeto para controlar el acceso a él, permitiendo hacer algo antes o después de que la solicitud llegue al objeto real.</p>
+                    <span class="section-title">Concepto</span>
+                    <p>Actúa como sustituto de un objeto para controlar el acceso, permitir la carga diferida (Lazy Loading) o añadir seguridad.</p>
                     <div class="analogy-box">
-                        <strong>Analogía:</strong> Un Asistente Personal. Recibe tus peticiones y solo te pasa con el jefe si es urgente o tienes cita, evitando que él se sature.
+                        <strong>Analogía:</strong> Un Asistente Personal. Recibe peticiones y solo te pasa con el jefe si es urgente o tienes cita, evitando saturar el recurso real.
                     </div>
-                    <div class="industry-box">
+                    <div style="margin-top: 15px;">
                         <span class="section-title">Industria</span>
                         <span class="industry-tag">Netflix</span> <span class="industry-tag">Nginx / AWS</span>
                     </div>
@@ -213,18 +212,18 @@ sello = Fabrica.obtener_sello()</code></pre>
         if usuario == "Admin":
             self.real.acceder()
         else:
-            print("Acceso Denegado")</code></pre>
+            print("Acceso Denegado por el Proxy")</code></pre>
             </div>
         </div>
         
         <div class="slide">
             <div class="quiz-container" id="quiz-container">
-                <h2 style="border: none; text-align: center;">Dinámica de Clase</h2>
-                <h3 id="question-text">¿Listos para la evaluación técnica?</h3>
+                <h2>Dinámica Interactiva</h2>
+                <h3 id="question-text">¿Están listos para poner a prueba lo aprendido?</h3>
                 <div class="options-grid" id="options-grid">
-                    <button class="option-btn" onclick="iniciarQuiz()">¡Iniciar Trivia!</button>
+                    <button class="option-btn" onclick="iniciarQuiz()">¡Comenzar Trivia!</button>
                 </div>
-                <p id="score-display" style="font-size: 1.2em; margin-top: 20px;"></p>
+                <p id="score-display" style="font-size: 1.2em; margin-top: 20px; color: var(--success);"></p>
             </div>
         </div>
 
@@ -252,18 +251,18 @@ sello = Fabrica.obtener_sello()</code></pre>
 
         const preguntas = [
             { q: "¿Qué patrón usarías para añadirle un 'token de seguridad' a una petición sin cambiar la clase original?", opts: ["Proxy", "Facade", "Decorator", "Flyweight"], a: 2 },
-            { q: "¿Cuál es la analogía perfecta para el patrón Facade?", opts: ["El asistente", "La ropa", "El Call Center", "Los sellos"], a: 2 },
-            { q: "¿Qué patrón es ideal para optimizar RAM cuando tienes miles de objetos similares?", opts: ["Flyweight", "Proxy", "Decorator", "Facade"], a: 0 },
-            { q: "El 'Lazy Loading' (cargar el objeto hasta que se usa) es una función de:", opts: ["Decorator", "Proxy", "Facade", "Flyweight"], a: 1 }
+            { q: "¿Cuál es la analogía utilizada para el patrón Facade?", opts: ["El asistente", "La ropa", "El Call Center", "Los sellos"], a: 2 },
+            { q: "¿Qué patrón ayuda a ahorrar RAM separando el estado intrínseco del extrínseco?", opts: ["Flyweight", "Proxy", "Decorator", "Facade"], a: 0 },
+            { q: "Controlar el acceso a un objeto pesado mediante 'Lazy Loading' es tarea del:", opts: ["Decorator", "Proxy", "Facade", "Flyweight"], a: 1 }
         ];
 
         let pIdx = 0, puntos = 0;
 
-        function iniciarQuiz() { pIdx = 0; puntos = 0; mostrarP(); }
+        function iniciarQuiz() { pIdx = 0; puntos = 0; document.getElementById('score-display').innerText = ""; mostrarP(); }
         function mostrarP() {
             if (pIdx >= preguntas.length) { finalizar(); return; }
             const p = preguntas[pIdx];
-            document.getElementById('question-text').innerText = p.q;
+            document.getElementById('question-text').innerText = `${pIdx + 1}. ${p.q}`;
             const grid = document.getElementById('options-grid');
             grid.innerHTML = '';
             p.opts.forEach((o, i) => {
@@ -281,9 +280,9 @@ sello = Fabrica.obtener_sello()</code></pre>
             });
         }
         function finalizar() {
-            document.getElementById('question-text').innerText = "Resultados Finales";
-            document.getElementById('options-grid').innerHTML = `<button class="option-btn" onclick="iniciarQuiz()">Reintentar</button>`;
-            document.getElementById('score-display').innerText = `Puntuación: ${puntos} / ${preguntas.length}`;
+            document.getElementById('question-text').innerText = "¡Dinámica Finalizada!";
+            document.getElementById('options-grid').innerHTML = `<button class="option-btn" onclick="iniciarQuiz()">Reintentar Trivia</button>`;
+            document.getElementById('score-display').innerText = `Resultado: ${puntos} de ${preguntas.length} correctas.`;
         }
     </script>
 </body>
