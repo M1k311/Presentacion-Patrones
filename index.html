@@ -6,7 +6,7 @@
     <title>Patrones Estructurales - UPIICSA</title>
     <style>
         :root {
-            --bg-color: #11111b;
+            --bg-color: #0d0d12;
             --card-bg: #1e1e2e;
             --text-color: #cdd6f4;
             --accent: #89b4fa;
@@ -16,9 +16,12 @@
             --danger: #f38ba8;
             --sub-text: #9399b2;
         }
+        
+        * { box-sizing: border-box; }
+
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             display: flex;
@@ -26,84 +29,140 @@
             height: 100vh;
             overflow: hidden;
         }
+
         .slide-container {
             flex-grow: 1;
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 10px;
         }
+
         .slide {
             position: absolute;
             opacity: 0;
             transition: all 0.4s ease-in-out;
-            width: 90%;
+            width: 95%;
             max-width: 1100px;
             pointer-events: none;
             background: var(--card-bg);
-            padding: 40px;
+            padding: 25px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             max-height: 85vh;
             overflow-y: auto;
         }
+
         .slide.active { opacity: 1; pointer-events: auto; transform: translateY(0); }
-        h1 { color: var(--accent); font-size: 3em; text-align: center; margin-bottom: 10px; }
-        h2 { color: var(--accent); border-left: 5px solid var(--accent); padding-left: 15px; margin-top: 0; }
-        .grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
-        .section-title { font-weight: bold; color: var(--accent-hover); text-transform: uppercase; font-size: 0.9em; margin-bottom: 8px; display: block; }
-        .analogy-box { background: rgba(137, 180, 250, 0.1); padding: 15px; border-radius: 8px; font-style: italic; border: 1px dashed var(--accent); margin-top: 10px; }
-        .industry-tag { background: #313244; padding: 4px 10px; border-radius: 5px; font-size: 0.85em; margin-right: 5px; color: var(--success); border: 1px solid #45475a; }
+
+        h1 { color: var(--accent); font-size: 2.2rem; text-align: center; margin-bottom: 10px; }
+        h2 { color: var(--accent); border-left: 5px solid var(--accent); padding-left: 15px; font-size: 1.5rem; }
+
+        .grid-info { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 15px; }
+
+        .section-title { font-weight: bold; color: var(--accent-hover); text-transform: uppercase; font-size: 0.8rem; margin-bottom: 5px; display: block; }
+        
+        .analogy-box { 
+            background: rgba(137, 180, 250, 0.05); 
+            padding: 12px; 
+            border-radius: 8px; 
+            font-style: italic; 
+            border: 1px dashed var(--accent); 
+            font-size: 0.95rem;
+        }
+
+        .industry-tag { 
+            background: #313244; 
+            padding: 4px 10px; 
+            border-radius: 5px; 
+            font-size: 0.8rem; 
+            margin: 5px 5px 0 0; 
+            display: inline-block;
+            color: var(--success); 
+            border: 1px solid #45475a; 
+        }
+
         pre {
             background-color: var(--code-bg);
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85em;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.8rem;
             margin: 0;
             border: 1px solid #313244;
+            overflow-x: auto;
+            width: 100%;
         }
-        .controls { display: flex; justify-content: center; padding: 25px; gap: 20px; background: #181825; z-index: 100; }
-        button { background: var(--accent); color: #11111b; border: none; padding: 12px 28px; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: 700; transition: 0.3s; }
-        button:hover { background: var(--accent-hover); transform: scale(1.05); }
-        
-        .quiz-container { text-align: center; }
-        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
-        .option-btn { background: #313244; color: white; padding: 18px; border-radius: 8px; }
+
+        .controls { 
+            display: flex; 
+            justify-content: center; 
+            padding: 15px; 
+            gap: 15px; 
+            background: #11111b; 
+            z-index: 100; 
+        }
+
+        button { 
+            background: var(--accent); 
+            color: #11111b; 
+            border: none; 
+            padding: 12px 20px; 
+            border-radius: 8px; 
+            font-size: 1rem; 
+            cursor: pointer; 
+            font-weight: 700; 
+            flex: 1;
+            max-width: 200px;
+        }
+
+        /* Quiz Responsivo */
+        .options-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+        .option-btn { background: #313244; color: white; padding: 15px; border-radius: 8px; font-weight: normal; }
         .option-btn.correct { background: var(--success) !important; color: #111; }
         .option-btn.wrong { background: var(--danger) !important; color: #111; }
+
+        /* Media Query para Computadora */
+        @media (min-width: 768px) {
+            .slide { padding: 40px; width: 90%; }
+            h1 { font-size: 3.5rem; }
+            h2 { font-size: 2rem; }
+            .grid-info { grid-template-columns: 1fr 1fr; gap: 30px; }
+            .options-grid { grid-template-columns: 1fr 1fr; }
+            pre { font-size: 0.9rem; }
+            .controls { padding: 25px; }
+            button { flex: none; width: auto; }
+        }
     </style>
 </head>
 <body>
 
     <div class="slide-container">
-        
         <div class="slide active">
             <h1>PATRONES ESTRUCTURALES</h1>
-            <div style="text-align: center; margin-top: 30px;">
-                <p style="font-size: 1.4em; color: var(--sub-text);">Ingeniería en Diseño | UPIICSA</p>
+            <div style="text-align: center; margin-top: 20px;">
+                <p style="font-size: 1.1rem; color: var(--sub-text);">Ingeniería en Diseño | UPIICSA</p>
                 <p>Profesora: <strong>Mares Romero Ma. Eugenia</strong></p>
-                <div style="margin-top: 50px;">
-                    <h3 style="color: var(--accent);">Integrantes:</h3>
-                    <p>Pedraza Venta Miguel Ángel</p>
-                    <p>Ojeda García Alberto</p>
-                    <p>Solís Garcilazo Samuel</p>
+                <div style="margin-top: 30px;">
+                    <span class="section-title">Integrantes</span>
+                    <p style="margin: 5px 0;">Pedraza Venta Miguel Ángel</p>
+                    <p style="margin: 5px 0;">Ojeda García Alberto</p>
+                    <p style="margin: 5px 0;">Solís Garcilazo Samuel</p>
                 </div>
             </div>
         </div>
 
         <div class="slide">
             <h2>Composición y Estructura</h2>
-            <p>Los patrones estructurales nos enseñan a ensamblar objetos y clases en estructuras más grandes, manteniendo el sistema flexible y eficiente.</p>
             <div class="grid-info">
                 <div>
-                    <span class="section-title">El Problema</span>
-                    <p>A medida que un sistema crece, las relaciones entre clases se vuelven rígidas. La herencia tradicional crea jerarquías difíciles de mantener.</p>
+                    <span class="section-title">El Desafío</span>
+                    <p>Al escalar sistemas, la herencia rígida genera jerarquías inmanejables. Los patrones estructurales proponen ensamblar objetos para mantener la flexibilidad.</p>
                 </div>
                 <div>
-                    <span class="section-title">La Solución</span>
-                    <p>Utilizar la <strong>composición</strong> para envolver objetos o crear fachadas que simplifiquen la interacción entre componentes.</p>
+                    <span class="section-title">La Estrategia</span>
+                    <p>Se utiliza la <strong>composición</strong> sobre la herencia para crear estructuras eficientes que puedan cambiar en tiempo de ejecución.</p>
                 </div>
             </div>
         </div>
@@ -112,27 +171,21 @@
             <h2>1. Decorator (Wrapper)</h2>
             <div class="grid-info">
                 <div>
-                    <span class="section-title">Concepto</span>
-                    <p>Añade responsabilidades adicionales a un objeto de forma dinámica. Es la alternativa ideal para evitar la "explosión de clases".</p>
+                    <span class="section-title">Concepto Técnico</span>
+                    <p>Asigna nuevas responsabilidades a objetos de forma dinámica. Evita crear una subclase para cada combinación de funciones.</p>
                     <div class="analogy-box">
-                        <strong>Analogía:</strong> Como ponerse ropa. Un suéter extiende tu comportamiento si tienes frío, una chaqueta añade otra capa. Puedes quitar capas sin afectarte a ti mismo.
+                        <strong>Analogía:</strong> Como ponerse ropa. Un suéter añade calor sin cambiar quién eres; puedes quitarlo o añadir una chaqueta encima.
                     </div>
-                    <div style="margin-top: 15px;">
-                        <span class="section-title">Industria</span>
-                        <span class="industry-tag">Uber</span> <span class="industry-tag">Java I/O</span>
+                    <div style="margin-top: 10px;">
+                        <span class="industry-tag">Uber (Capas de red)</span>
+                        <span class="industry-tag">Java I/O Streams</span>
                     </div>
                 </div>
-                <pre><code>class CafeBase:
-    def costo(self): return 20.0
-
-class DecoradorLeche:
+                <pre><code>class DecoradorLeche:
     def __init__(self, cafe):
         self.cafe = cafe
     def costo(self):
-        return self.cafe.costo() + 5.0
-
-# Cliente envuelve el objeto base
-mi_pedido = DecoradorLeche(CafeBase())</code></pre>
+        return self.cafe.costo() + 5.0</code></pre>
             </div>
         </div>
 
@@ -140,22 +193,17 @@ mi_pedido = DecoradorLeche(CafeBase())</code></pre>
             <h2>2. Facade (Fachada)</h2>
             <div class="grid-info">
                 <div>
-                    <span class="section-title">Concepto</span>
-                    <p>Proporciona una interfaz unificada y simple para un subsistema complejo de clases, ocultando la lógica interna al cliente.</p>
+                    <span class="section-title">Concepto Técnico</span>
+                    <p>Proporciona una interfaz simplificada a un conjunto complejo de clases. Desacopla al cliente de la implementación interna.</p>
                     <div class="analogy-box">
-                        <strong>Analogía:</strong> Como un operador de Call Center. No necesitas conocer a los 15 departamentos internos; hablas con una persona que coordina todo.
+                        <strong>Analogía:</strong> Como un operador de Call Center. Tú solo hablas con una persona, y ella se encarga de coordinar con logística, pagos y almacén.
                     </div>
-                    <div style="margin-top: 15px;">
-                        <span class="section-title">Industria</span>
-                        <span class="industry-tag">Stripe</span> <span class="industry-tag">Mercado Pago</span>
+                    <div style="margin-top: 10px;">
+                        <span class="industry-tag">Stripe (Pagos)</span>
+                        <span class="industry-tag">Mercado Pago</span>
                     </div>
                 </div>
                 <pre><code>class FachadaTienda:
-    def __init__(self):
-        self.inv = Inventario()
-        self.banco = Banco()
-        self.envio = Envio()
-
     def comprar(self):
         if self.inv.hay_stock():
             self.banco.pago()
@@ -167,26 +215,22 @@ mi_pedido = DecoradorLeche(CafeBase())</code></pre>
             <h2>3. Flyweight (Peso Ligero)</h2>
             <div class="grid-info">
                 <div>
-                    <span class="section-title">Concepto</span>
-                    <p>Optimiza el uso de RAM compartiendo datos comunes (estado intrínseco) entre múltiples objetos similares en lugar de duplicarlos.</p>
+                    <span class="section-title">Concepto Técnico</span>
+                    <p>Reduce el consumo de memoria compartiendo el "estado intrínseco" inmutable entre miles de objetos similares.</p>
                     <div class="analogy-box">
-                        <strong>Analogía:</strong> Los sellos. No fabricas mil moldes para marcar mil hojas; usas un solo molde y solo cambias el papel para ahorrar material y espacio.
+                        <strong>Analogía:</strong> Los sellos de oficina. No creas un molde nuevo para cada hoja; usas un solo sello y solo cambias la posición del papel.
                     </div>
-                    <div style="margin-top: 15px;">
-                        <span class="section-title">Industria</span>
-                        <span class="industry-tag">Google Maps</span> <span class="industry-tag">PDF Readers</span>
+                    <div style="margin-top: 10px;">
+                        <span class="industry-tag">Google Maps</span>
+                        <span class="industry-tag">Lectores PDF</span>
                     </div>
                 </div>
                 <pre><code>class Fabrica:
-    _sello = None
     @classmethod
     def obtener_sello(cls):
         if not cls._sello: 
-            cls._sello = SelloPesado()
-        return cls._sello
-
-# Miles de marcas, un solo objeto en RAM
-sello = Fabrica.obtener_sello()</code></pre>
+            cls._sello = Sello()
+        return cls._sello</code></pre>
             </div>
         </div>
 
@@ -194,44 +238,40 @@ sello = Fabrica.obtener_sello()</code></pre>
             <h2>4. Proxy (Intermediario)</h2>
             <div class="grid-info">
                 <div>
-                    <span class="section-title">Concepto</span>
-                    <p>Actúa como sustituto de un objeto para controlar el acceso, permitir la carga diferida (Lazy Loading) o añadir seguridad.</p>
+                    <span class="section-title">Concepto Técnico</span>
+                    <p>Sustituto que controla el acceso al objeto real. Permite validación de seguridad y Lazy Loading (carga diferida).</p>
                     <div class="analogy-box">
-                        <strong>Analogía:</strong> Un Asistente Personal. Recibe peticiones y solo te pasa con el jefe si es urgente o tienes cita, evitando saturar el recurso real.
+                        <strong>Analogía:</strong> Un Asistente Personal. Filtra las llamadas y solo te comunica con el jefe si es urgente o tienes una cita previa.
                     </div>
-                    <div style="margin-top: 15px;">
-                        <span class="section-title">Industria</span>
-                        <span class="industry-tag">Netflix</span> <span class="industry-tag">Nginx / AWS</span>
+                    <div style="margin-top: 10px;">
+                        <span class="industry-tag">Netflix (Video Proxy)</span>
+                        <span class="industry-tag">AWS CloudFront</span>
                     </div>
                 </div>
                 <pre><code>class ProxySeguridad:
-    def __init__(self):
-        self.real = RecursoPesado()
-    
-    def peticion(self, usuario):
-        if usuario == "Admin":
+    def peticion(self, user):
+        if user == "Admin":
             self.real.acceder()
         else:
-            print("Acceso Denegado por el Proxy")</code></pre>
-            </div>
-        </div>
-        
-        <div class="slide">
-            <div class="quiz-container" id="quiz-container">
-                <h2>Dinámica Interactiva</h2>
-                <h3 id="question-text">¿Están listos para poner a prueba lo aprendido?</h3>
-                <div class="options-grid" id="options-grid">
-                    <button class="option-btn" onclick="iniciarQuiz()">¡Comenzar Trivia!</button>
-                </div>
-                <p id="score-display" style="font-size: 1.2em; margin-top: 20px; color: var(--success);"></p>
+            print("Denegado")</code></pre>
             </div>
         </div>
 
+        <div class="slide">
+            <div class="quiz-container" id="quiz-container">
+                <h2>Trivia Interactiva</h2>
+                <h3 id="question-text" style="font-size: 1.1rem; min-height: 3em;">¿Estás listo?</h3>
+                <div class="options-grid" id="options-grid">
+                    <button class="option-btn" onclick="iniciarQuiz()">¡Comenzar!</button>
+                </div>
+                <p id="score-display" style="font-weight: bold; margin-top: 15px; color: var(--success);"></p>
+            </div>
+        </div>
     </div>
 
     <div class="controls">
-        <button onclick="cambiarSlide(-1)">❮ Anterior</button>
-        <button onclick="cambiarSlide(1)">Siguiente ❯</button>
+        <button onclick="cambiarSlide(-1)">❮ Ant.</button>
+        <button onclick="cambiarSlide(1)">Sig. ❯</button>
     </div>
 
     <script>
@@ -243,26 +283,31 @@ sello = Fabrica.obtener_sello()</code></pre>
             slideActual = (slideActual + dir + slides.length) % slides.length;
             slides[slideActual].classList.add('active');
         }
-        
+
         document.addEventListener('keydown', e => {
             if (e.key === 'ArrowRight') cambiarSlide(1);
             if (e.key === 'ArrowLeft') cambiarSlide(-1);
         });
 
         const preguntas = [
-            { q: "¿Qué patrón usarías para añadirle un 'token de seguridad' a una petición sin cambiar la clase original?", opts: ["Proxy", "Facade", "Decorator", "Flyweight"], a: 2 },
-            { q: "¿Cuál es la analogía utilizada para el patrón Facade?", opts: ["El asistente", "La ropa", "El Call Center", "Los sellos"], a: 2 },
-            { q: "¿Qué patrón ayuda a ahorrar RAM separando el estado intrínseco del extrínseco?", opts: ["Flyweight", "Proxy", "Decorator", "Facade"], a: 0 },
-            { q: "Controlar el acceso a un objeto pesado mediante 'Lazy Loading' es tarea del:", opts: ["Decorator", "Proxy", "Facade", "Flyweight"], a: 1 }
+            { q: "¿Qué patrón añade funciones dinámicamente sin cambiar la clase original?", opts: ["Proxy", "Facade", "Decorator", "Flyweight"], a: 2 },
+            { q: "¿Cuál es la analogía para el patrón Facade?", opts: ["Asistente", "La ropa", "Call Center", "Los sellos"], a: 2 },
+            { q: "¿Qué patrón optimiza RAM compartiendo datos comunes?", opts: ["Flyweight", "Proxy", "Decorator", "Facade"], a: 0 },
+            { q: "El 'Lazy Loading' (cargar solo cuando se pide) es típico del:", opts: ["Decorator", "Proxy", "Facade", "Flyweight"], a: 1 }
         ];
 
         let pIdx = 0, puntos = 0;
 
         function iniciarQuiz() { pIdx = 0; puntos = 0; document.getElementById('score-display').innerText = ""; mostrarP(); }
         function mostrarP() {
-            if (pIdx >= preguntas.length) { finalizar(); return; }
+            if (pIdx >= preguntas.length) {
+                document.getElementById('question-text').innerText = "¡Terminado!";
+                document.getElementById('options-grid').innerHTML = `<button class="option-btn" onclick="iniciarQuiz()">Reintentar</button>`;
+                document.getElementById('score-display').innerText = `Puntaje: ${puntos} / ${preguntas.length}`;
+                return;
+            }
             const p = preguntas[pIdx];
-            document.getElementById('question-text').innerText = `${pIdx + 1}. ${p.q}`;
+            document.getElementById('question-text').innerText = p.q;
             const grid = document.getElementById('options-grid');
             grid.innerHTML = '';
             p.opts.forEach((o, i) => {
@@ -274,15 +319,10 @@ sello = Fabrica.obtener_sello()</code></pre>
                     btns.forEach(x => x.disabled = true);
                     if (i === p.a) { b.classList.add('correct'); puntos++; }
                     else { b.classList.add('wrong'); btns[p.a].classList.add('correct'); }
-                    setTimeout(() => { pIdx++; mostrarP(); }, 1500);
+                    setTimeout(() => { pIdx++; mostrarP(); }, 1200);
                 };
                 grid.appendChild(b);
             });
-        }
-        function finalizar() {
-            document.getElementById('question-text').innerText = "¡Dinámica Finalizada!";
-            document.getElementById('options-grid').innerHTML = `<button class="option-btn" onclick="iniciarQuiz()">Reintentar Trivia</button>`;
-            document.getElementById('score-display').innerText = `Resultado: ${puntos} de ${preguntas.length} correctas.`;
         }
     </script>
 </body>
