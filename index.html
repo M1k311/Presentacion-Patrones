@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patrones Estructurales - UPIICSA</title>
+    <title>Patrones Estructurales - Ingeniería de Software</title>
     <style>
         :root {
-            --bg-color: #1e1e2e;
+            --bg-color: #11111b;
+            --card-bg: #1e1e2e;
             --text-color: #cdd6f4;
             --accent: #89b4fa;
             --accent-hover: #b4befe;
             --code-bg: #181825;
             --success: #a6e3a1;
             --danger: #f38ba8;
+            --sub-text: #9399b2;
         }
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Lexend', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             height: 100vh;
+            overflow: hidden;
         }
         .slide-container {
             flex-grow: 1;
@@ -30,77 +32,49 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
         .slide {
             position: absolute;
             opacity: 0;
-            transition: opacity 0.4s ease-in-out;
-            width: 85%;
-            max-width: 1000px;
+            transition: all 0.4s ease-in-out;
+            width: 90%;
+            max-width: 1100px;
             pointer-events: none;
-            max-height: 80vh;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            max-height: 85vh;
             overflow-y: auto;
         }
-        .slide.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        h1 { color: var(--accent); font-size: 3em; text-align: center; }
-        h2 { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
-        p, li { font-size: 1.1em; line-height: 1.6; }
+        .slide.active { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        h1 { color: var(--accent); font-size: 2.8em; text-align: center; margin-bottom: 10px; }
+        h2 { color: var(--accent); border-left: 5px solid var(--accent); padding-left: 15px; margin-top: 0; }
+        .grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
+        .section-title { font-weight: bold; color: var(--accent-hover); text-transform: uppercase; font-size: 0.9em; margin-bottom: 8px; display: block; }
+        .analogy-box { background: rgba(137, 180, 250, 0.1); padding: 15px; border-radius: 8px; font-style: italic; border: 1px dashed var(--accent); }
+        .industry-box { margin-top: 15px; }
+        .industry-tag { background: #313244; padding: 4px 10px; border-radius: 5px; font-size: 0.85em; margin-right: 5px; color: var(--success); border: 1px solid #45475a; }
         pre {
             background-color: var(--code-bg);
-            padding: 15px;
-            border-radius: 8px;
-            overflow-x: auto;
-            border-left: 4px solid var(--accent);
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.95em;
-        }
-        .controls {
-            display: flex;
-            justify-content: center;
             padding: 20px;
-            gap: 20px;
-            background: rgba(0,0,0,0.3);
-            z-index: 100;
-        }
-        button {
-            background-color: var(--accent);
-            color: #11111b;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background-color 0.2s;
-        }
-        button:hover { background-color: var(--accent-hover); }
-        
-        /* Estilos para el Quiz */
-        .quiz-container {
-            background: #313244;
-            padding: 30px;
             border-radius: 10px;
-            text-align: center;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85em;
+            margin: 0;
+            border: 1px solid #313244;
         }
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .option-btn {
-            background-color: #45475a;
-            color: white;
-            padding: 15px;
-            font-weight: normal;
-        }
-        .option-btn:hover { background-color: #585b70; }
-        .option-btn.correct { background-color: var(--success); color: #111;}
-        .option-btn.wrong { background-color: var(--danger); color: #111;}
-        #score-display { font-size: 1.5em; color: var(--success); font-weight: bold; margin-top: 20px;}
+        .controls { display: flex; justify-content: center; padding: 25px; gap: 20px; background: #181825; z-index: 100; }
+        button { background: var(--accent); color: #11111b; border: none; padding: 12px 28px; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: 700; transition: 0.3s; }
+        button:hover { background: var(--accent-hover); transform: scale(1.05); }
+        
+        /* Quiz */
+        .quiz-container { text-align: center; }
+        .options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px; }
+        .option-btn { background: #313244; color: white; padding: 18px; border-radius: 8px; }
+        .option-btn.correct { background: var(--success) !important; color: #111; }
+        .option-btn.wrong { background: var(--danger) !important; color: #111; }
     </style>
 </head>
 <body>
@@ -109,118 +83,148 @@
         
         <div class="slide active">
             <h1>PATRONES ESTRUCTURALES</h1>
-            <div style="text-align: center;">
-                <p><strong>Ingeniería en Diseño</strong></p>
-                <p>Profesora: MARES ROMERO MA. EUGENIA</p>
-                <br>
-                <h3>Presentado por:</h3>
-                <p>Ojeda García Alberto | Pedraza Venta Miguel Ángel | Solís Garcilazo Samuel</p>
+            <div style="text-align: center; margin-top: 30px;">
+                <p style="font-size: 1.4em; color: var(--sub-text);">Ingeniería en Diseño | UPIICSA</p>
+                <p>Profesora: <strong>Mares Romero Ma. Eugenia</strong></p>
+                <div style="margin-top: 50px; display: flex; justify-content: space-around;">
+                    <div><span class="section-title">Líder técnico</span><br>Pedraza Venta Miguel Ángel</div>
+                    <div><span class="section-title">Arquitectura</span><br>Ojeda García Alberto</div>
+                    <div><span class="section-title">Desarrollo</span><br>Solís Garcilazo Samuel</div>
+                </div>
             </div>
         </div>
 
         <div class="slide">
-            <h2>¿Qué son los Patrones Estructurales?</h2>
-            <p>En la ingeniería de software, los patrones estructurales se enfocan en cómo las clases y objetos se componen para formar estructuras más grandes y complejas, garantizando que el sistema sea flexible y eficiente.</p>
-            <ul>
-                <li><strong>Herencia vs Composición:</strong> En lugar de depender exclusivamente de la herencia (que es estática y rígida), estos patrones favorecen la composición de objetos en tiempo de ejecución.</li>
-                <li><strong>Objetivo:</strong> Simplificar el diseño identificando una forma estandarizada de organizar las relaciones entre las entidades de código.</li>
-            </ul>
+            <h2>Composición y Estructura</h2>
+            <p>Los patrones estructurales nos enseñan a ensamblar objetos y clases en estructuras más grandes, manteniendo el sistema flexible y eficiente.</p>
+            <div class="grid-info">
+                <div>
+                    <span class="section-title">Problema Recurrente</span>
+                    <p>Cuando un sistema crece, las relaciones entre clases se vuelven rígidas. La herencia tradicional crea "explosión de clases" difíciles de mantener.</p>
+                </div>
+                <div>
+                    <span class="section-title">Solución de Diseño</span>
+                    <p>Utilizar la <strong>composición</strong> para envolver objetos o crear fachadas que oculten la complejidad interna del sistema.</p>
+                </div>
+            </div>
         </div>
 
         <div class="slide">
-            <h2>1. Decorator (Envoltorio / Wrapper)</h2>
-            <p>Permite añadir responsabilidades y comportamientos a un objeto de forma dinámica. Es la alternativa perfecta a la herencia múltiple para evitar la "explosión de clases" (crear subclases para cada combinación posible de características).</p>
-            <p><strong>Principio SOLID aplicado:</strong> <em>Open/Closed Principle</em> (Abierto a la extensión, cerrado a la modificación).</p>
-            <pre><code>
-# En lugar de crear CafeConLecheYAzucar, CafeConLeche, CafeConAzucar...
-class CafeBase:
+            <h2>1. Decorator (Wrapper)</h2>
+            <div class="grid-info">
+                <div>
+                    <span class="section-title">¿Qué es?</span>
+                    <p>Añade responsabilidades adicionales a un objeto de forma dinámica sin modificar su código base. Es una alternativa flexible a la herencia.</p>
+                    <div class="analogy-box">
+                        <strong>Analogía:</strong> Como ponerse ropa. Un suéter extiende tu comportamiento si tienes frío, una chaqueta añade otra capa. Puedes quitar capas sin afectarte a ti mismo.
+                    </div>
+                    <div class="industry-box">
+                        <span class="section-title">Industria</span>
+                        <span class="industry-tag">Uber</span> <span class="industry-tag">Java I/O Streams</span>
+                    </div>
+                </div>
+                <pre><code>class CafeBase:
     def costo(self): return 20.0
 
 class DecoradorLeche:
     def __init__(self, cafe):
-        self.cafe = cafe # Recibe el objeto original (Composición)
+        self.cafe = cafe
     def costo(self):
-        return self.cafe.costo() + 5.0 # Añade su propio comportamiento
+        return self.cafe.costo() + 5.0
 
-mi_cafe = CafeBase()
-cafe_con_leche = DecoradorLeche(mi_cafe) # El cliente decide qué capas añadir
-            </code></pre>
+# Uso dinámico
+mi_pedido = DecoradorLeche(CafeBase())</code></pre>
+            </div>
         </div>
 
         <div class="slide">
             <h2>2. Facade (Fachada)</h2>
-            <p>Proporciona una interfaz unificada de alto nivel para un subsistema complejo. Su objetivo es desacoplar al cliente del subsistema, reduciendo la curva de aprendizaje y las dependencias.</p>
-            <p><strong>Casos de uso en la Industria:</strong> APIs de pasarelas de pago (Stripe, Mercado Pago). Detrás de un simple `procesarPago()`, hay sistemas de prevención de fraude, validación de tarjetas y conexión bancaria.</p>
-            <pre><code>
-class FachadaTienda:
+            <div class="grid-info">
+                <div>
+                    <span class="section-title">¿Qué es?</span>
+                    <p>Proporciona una interfaz simplificada a una biblioteca, un framework o cualquier conjunto complejo de clases de un subsistema.</p>
+                    <div class="analogy-box">
+                        <strong>Analogía:</strong> Como un operador de Call Center. No necesitas conocer a los 15 departamentos internos; hablas con una persona que coordina todo por ti.
+                    </div>
+                    <div class="industry-box">
+                        <span class="section-title">Industria</span>
+                        <span class="industry-tag">Stripe</span> <span class="industry-tag">Mercado Pago</span>
+                    </div>
+                </div>
+                <pre><code>class FachadaTienda:
     def __init__(self):
-        # Inicializa todos los subsistemas complejos
-        self.inventario = Inventario()
+        self.inv = Inventario()
         self.banco = Banco()
-        self.logistica = Envio()
+        self.envio = Envio()
 
-    def comprar_articulo(self):
-        # Oculta la complejidad de la orquestación
-        if self.inventario.hay_stock():
-            self.banco.procesar_pago()
-            self.logistica.enviar_paquete()
-            </code></pre>
+    def comprar(self):
+        if self.inv.hay_stock():
+            self.banco.pago()
+            self.envio.mandar()</code></pre>
+            </div>
         </div>
 
         <div class="slide">
             <h2>3. Flyweight (Peso Ligero)</h2>
-            <p>Diseñado para sistemas que manejan miles o millones de objetos, optimizando drásticamente el uso de memoria RAM al dividir el estado en dos:</p>
-            <ul>
-                <li><strong>Estado Intrínseco:</strong> Inmutable y compartido entre todos los objetos (ej. la textura gráfica de un árbol en un videojuego).</li>
-                <li><strong>Estado Extrínseco:</strong> Varía y se pasa como contexto (ej. las coordenadas X, Y de cada árbol).</li>
-            </ul>
-            <pre><code>
-class Fabrica:
-    _recurso_pesado = None # Memoria compartida (Estado Intrínseco)
-    
+            <div class="grid-info">
+                <div>
+                    <span class="section-title">¿Qué es?</span>
+                    <p>Permite mantener más objetos en la memoria RAM compartiendo las partes comunes del estado entre varios objetos en lugar de mantener todos los datos en cada uno.</p>
+                    <div class="analogy-box">
+                        <strong>Analogía:</strong> Los sellos. No fabricas mil moldes para marcar mil hojas; usas un solo molde y solo cambias de lugar el papel para ahorrar material.
+                    </div>
+                    <div class="industry-box">
+                        <span class="section-title">Industria</span>
+                        <span class="industry-tag">Google Maps</span> <span class="industry-tag">Adobe Acrobat</span>
+                    </div>
+                </div>
+                <pre><code>class Fabrica:
+    _sello = None
     @classmethod
-    def obtener_recurso(cls):
-        if not cls._recurso_pesado: 
-            cls._recurso_pesado = CargarArchivoGigante()
-        return cls._recurso_pesado
+    def obtener_sello(cls):
+        if not cls._sello: 
+            cls._sello = SelloPesado()
+        return cls._sello
 
-# 100,000 llamadas, pero solo 1 instancia en RAM
-for i in range(100000):
-    Fabrica.obtener_recurso().dibujar(x=i, y=i) # x, y es Estado Extrínseco
-            </code></pre>
+# Mil hojas, una sola imagen en RAM
+sello = Fabrica.obtener_sello()</code></pre>
+            </div>
         </div>
 
         <div class="slide">
             <h2>4. Proxy (Intermediario)</h2>
-            <p>Proporciona un sustituto o representante para controlar el acceso a otro objeto. Existen varios tipos:</p>
-            <ul>
-                <li><strong>Proxy Virtual:</strong> Retrasa la creación de un objeto pesado hasta que sea estrictamente necesario (Lazy Loading).</li>
-                <li><strong>Proxy de Protección:</strong> Verifica credenciales antes de redirigir la petición al objeto real.</li>
-            </ul>
-            <pre><code>
-class AsistenteProxy:
+            <div class="grid-info">
+                <div>
+                    <span class="section-title">¿Qué es?</span>
+                    <p>Proporciona un sustituto o marcador de posición para otro objeto para controlar el acceso a él, permitiendo hacer algo antes o después de que la solicitud llegue al objeto real.</p>
+                    <div class="analogy-box">
+                        <strong>Analogía:</strong> Un Asistente Personal. Recibe tus peticiones y solo te pasa con el jefe si es urgente o tienes cita, evitando que él se sature.
+                    </div>
+                    <div class="industry-box">
+                        <span class="section-title">Industria</span>
+                        <span class="industry-tag">Netflix</span> <span class="industry-tag">Nginx / AWS</span>
+                    </div>
+                </div>
+                <pre><code>class ProxySeguridad:
     def __init__(self):
-        self.directivo = None # No se instancia al inicio
-        
-    def peticion(self, es_urgente):
-        if es_urgente:
-            # Lazy Loading: Solo se carga si se cumple la condición
-            if not self.directivo: 
-                self.directivo = DirectivoReal()
-            self.directivo.atender()
+        self.real = RecursoPesado()
+    
+    def peticion(self, usuario):
+        if usuario == "Admin":
+            self.real.acceder()
         else:
-            print("Acceso denegado o pospuesto por el Proxy.")
-            </code></pre>
+            print("Acceso Denegado")</code></pre>
+            </div>
         </div>
         
         <div class="slide">
-            <h2>Prueba de Conocimientos</h2>
             <div class="quiz-container" id="quiz-container">
-                <h3 id="question-text">¿Están listos?</h3>
+                <h2 style="border: none; text-align: center;">Dinámica de Clase</h2>
+                <h3 id="question-text">¿Listos para la evaluación técnica?</h3>
                 <div class="options-grid" id="options-grid">
-                    <button class="option-btn" onclick="iniciarQuiz()">¡Comenzar Dinámica!</button>
+                    <button class="option-btn" onclick="iniciarQuiz()">¡Iniciar Trivia!</button>
                 </div>
-                <p id="score-display"></p>
+                <p id="score-display" style="font-size: 1.2em; margin-top: 20px;"></p>
             </div>
         </div>
 
@@ -232,106 +236,54 @@ class AsistenteProxy:
     </div>
 
     <script>
-        // Lógica del Carrusel
         let slideActual = 0;
         const slides = document.querySelectorAll('.slide');
 
-        function cambiarSlide(direccion) {
+        function cambiarSlide(dir) {
             slides[slideActual].classList.remove('active');
-            slideActual = slideActual + direccion;
-            
-            if (slideActual >= slides.length) slideActual = 0;
-            if (slideActual < 0) slideActual = slides.length - 1;
-            
+            slideActual = (slideActual + dir + slides.length) % slides.length;
             slides[slideActual].classList.add('active');
         }
         
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowRight') cambiarSlide(1);
-            if (event.key === 'ArrowLeft') cambiarSlide(-1);
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') cambiarSlide(1);
+            if (e.key === 'ArrowLeft') cambiarSlide(-1);
         });
 
-        // Lógica del Quiz
         const preguntas = [
-            {
-                pregunta: "¿Qué patrón previene la 'explosión de clases' al evitar la herencia múltiple?",
-                opciones: ["Facade", "Proxy", "Decorator", "Flyweight"],
-                correcta: 2
-            },
-            {
-                pregunta: "Si Mercado Pago nos da 1 sola función para ocultar todo su complejo sistema bancario interno, está usando:",
-                opciones: ["Decorator", "Facade", "Proxy", "Singleton"],
-                correcta: 1
-            },
-            {
-                pregunta: "¿Qué patrón separa el 'estado intrínseco' del 'estado extrínseco' para ahorrar memoria RAM?",
-                opciones: ["Flyweight", "Proxy", "Facade", "Decorator"],
-                correcta: 0
-            },
-            {
-                pregunta: "El 'Lazy Loading' (carga diferida) es una característica principal del patrón:",
-                opciones: ["Flyweight", "Facade", "Decorator", "Proxy Virtual"],
-                correcta: 3
-            }
+            { q: "¿Qué patrón usarías para añadirle un 'token de seguridad' a una petición sin cambiar la clase original?", opts: ["Proxy", "Facade", "Decorator", "Flyweight"], a: 2 },
+            { q: "¿Cuál es la analogía perfecta para el patrón Facade?", opts: ["El asistente", "La ropa", "El Call Center", "Los sellos"], a: 2 },
+            { q: "¿Qué patrón es ideal para optimizar RAM cuando tienes miles de objetos similares?", opts: ["Flyweight", "Proxy", "Decorator", "Facade"], a: 0 },
+            { q: "El 'Lazy Loading' (cargar el objeto hasta que se usa) es una función de:", opts: ["Decorator", "Proxy", "Facade", "Flyweight"], a: 1 }
         ];
 
-        let preguntaActual = 0;
-        let puntaje = 0;
+        let pIdx = 0, puntos = 0;
 
-        function iniciarQuiz() {
-            preguntaActual = 0;
-            puntaje = 0;
-            document.getElementById('score-display').innerText = "";
-            mostrarPregunta();
-        }
-
-        function mostrarPregunta() {
-            if (preguntaActual >= preguntas.length) {
-                terminarQuiz();
-                return;
-            }
-
-            const q = preguntas[preguntaActual];
-            document.getElementById('question-text').innerText = `${preguntaActual + 1}. ${q.pregunta}`;
-            
+        function iniciarQuiz() { pIdx = 0; puntos = 0; mostrarP(); }
+        function mostrarP() {
+            if (pIdx >= preguntas.length) { finalizar(); return; }
+            const p = preguntas[pIdx];
+            document.getElementById('question-text').innerText = p.q;
             const grid = document.getElementById('options-grid');
-            grid.innerHTML = ''; // Limpiar opciones
-
-            q.opciones.forEach((opcion, index) => {
-                const btn = document.createElement('button');
-                btn.className = 'option-btn';
-                btn.innerText = opcion;
-                btn.onclick = () => verificarRespuesta(index, q.correcta, btn);
-                grid.appendChild(btn);
+            grid.innerHTML = '';
+            p.opts.forEach((o, i) => {
+                const b = document.createElement('button');
+                b.className = 'option-btn';
+                b.innerText = o;
+                b.onclick = () => {
+                    const btns = document.querySelectorAll('.option-btn');
+                    btns.forEach(x => x.disabled = true);
+                    if (i === p.a) { b.classList.add('correct'); puntos++; }
+                    else { b.classList.add('wrong'); btns[p.a].classList.add('correct'); }
+                    setTimeout(() => { pIdx++; mostrarP(); }, 1500);
+                };
+                grid.appendChild(b);
             });
         }
-
-        function verificarRespuesta(seleccion, correcta, btn) {
-            const botones = document.querySelectorAll('.option-btn');
-            // Desactivar todos los botones para evitar doble clic
-            botones.forEach(b => b.disabled = true);
-
-            if (seleccion === correcta) {
-                btn.classList.add('correct');
-                puntaje++;
-            } else {
-                btn.classList.add('wrong');
-                botones[correcta].classList.add('correct'); // Mostrar la correcta
-            }
-
-            setTimeout(() => {
-                preguntaActual++;
-                mostrarPregunta();
-            }, 1500); // Esperar 1.5 seg antes de la siguiente pregunta
-        }
-
-        function terminarQuiz() {
-            document.getElementById('question-text').innerText = "¡Dinámica Terminada!";
-            const grid = document.getElementById('options-grid');
-            grid.innerHTML = `<button class="option-btn" onclick="iniciarQuiz()">Volver a jugar</button>`;
-            
-            const mensajeFinal = puntaje === 4 ? "¡Excelente! Ingenieros de verdad." : "Buen intento, a repasar el código.";
-            document.getElementById('score-display').innerText = `Puntuación: ${puntaje} / ${preguntas.length}\n${mensajeFinal}`;
+        function finalizar() {
+            document.getElementById('question-text').innerText = "Resultados Finales";
+            document.getElementById('options-grid').innerHTML = `<button class="option-btn" onclick="iniciarQuiz()">Reintentar</button>`;
+            document.getElementById('score-display').innerText = `Puntuación: ${puntos} / ${preguntas.length}`;
         }
     </script>
 </body>
