@@ -175,10 +175,15 @@ pre{background:#090d1a;border:1px solid rgba(0,212,255,.1);border-radius:0 0 8px
 .ig{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
 .ic{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px;transition:border-color .3s}
 .ic-icon{font-size:1.8rem;margin-bottom:4px}
-.ic h3{color:var(--cyan);font-size: clamp(1rem, 1.6vw, 1.2rem);margin-bottom:2px}
+.ic h3{
+  color:var(--cyan);
+  font-size:1rem;   /* antes .82rem */
+  margin-bottom:4px;
+}
+
 .ic p{
   color:var(--muted);
-  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-size:clamp(0.8rem, 1vw, 0.95rem);
   line-height:1.45;
 }
 
