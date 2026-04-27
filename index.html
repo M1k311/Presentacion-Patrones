@@ -152,15 +152,15 @@ pre{background:#090d1a;border:1px solid rgba(0,212,255,.1);border-radius:8px;pad
     <!-- 0 TITLE -->
     <div class="slide active" data-i="0">
       <div class="inner" style="text-align:center">
-        <div class="tag" style="margin-bottom:16px">UPIICSA · Ingeniería en Diseño · Diseño de Software</div>
+        <div class="tag" style="margin-bottom:16px">UPIICSA · Ingeniería en Diseño · 4NV42</div>
         <div class="gw big" data-text="PATRONES ESTRUCTURALES">PATRONES ESTRUCTURALES</div>
         <p style="color:var(--muted);font-size:.92rem;margin:18px 0 26px;letter-spacing:.5px">Cómo ensamblar objetos para crear estructuras flexibles y eficientes en tiempo de ejecución.</p>
         <div style="width:50px;height:1px;background:linear-gradient(to right,var(--cyan),transparent);margin:0 auto 22px"></div>
         <p style="color:var(--muted);font-size:.82rem">Profesora: <strong style="color:var(--text)">Mares Romero Ma. Eugenia</strong></p>
-        <p style="color:rgba(100,116,139,.6);font-size:.73rem;margin-top:8px">Pedraza Venta M.Á. · Ojeda García A. · Solís Garcilazo S.</p>
+        <p style="color:rgba(100,116,139,.6);font-size:.73rem;margin-top:8px">Ojeda García A. · Pedraza Venta M.Á. · Solís Garcilazo S.</p>
         <div style="display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:22px">
-          <span class="badge">🎨 Decorator</span><span class="badge">🏛️ Facade</span>
-          <span class="badge">🪶 Flyweight</span><span class="badge">🛡️ Proxy</span>
+          <span class="badge">Decorator</span><span class="badge">Facade</span>
+          <span class="badge">Flyweight</span><span class="badge">Proxy</span>
         </div>
         <p class="pulse" style="margin-top:28px;font-family:var(--mono);font-size:10px;color:rgba(100,116,139,.45);letter-spacing:2px">PRESIONA → PARA AVANZAR</p>
       </div>
@@ -183,22 +183,22 @@ pre{background:#090d1a;border:1px solid rgba(0,212,255,.1);border-radius:8px;pad
         </div>
         <div class="ig">
           <div class="ic">
-            <div class="ic-icon">🎨</div>
+            <div class="ic-icon"></div>
             <h3>Decorator</h3>
             <p>Añade responsabilidades dinámicamente sin modificar la clase original. Como capas que se apilan.</p>
           </div>
           <div class="ic">
-            <div class="ic-icon">🏛️</div>
+            <div class="ic-icon"></div>
             <h3>Facade</h3>
             <p>Una interfaz simple que oculta la complejidad de un conjunto de subsistemas internos.</p>
           </div>
           <div class="ic">
-            <div class="ic-icon">🪶</div>
+            <div class="ic-icon"></div>
             <h3>Flyweight</h3>
             <p>Comparte estado común entre miles de objetos para ahorrar memoria RAM significativamente.</p>
           </div>
           <div class="ic">
-            <div class="ic-icon">🛡️</div>
+            <div class="ic-icon"></div>
             <h3>Proxy</h3>
             <p>Controla el acceso al objeto real: seguridad, caché y carga diferida (lazy loading).</p>
           </div>
@@ -222,10 +222,10 @@ pre{background:#090d1a;border:1px solid rgba(0,212,255,.1);border-radius:8px;pad
             <div class="demo">
               <div class="dtitle">☕ Demo — Constructor de Café</div>
               <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:10px">
-                <button class="dbtn" onclick="addDec('milk',5,'dl-milk','🥛 Leche')">+ Leche ($5)</button>
-                <button class="dbtn" onclick="addDec('sug',3,'dl-sugar','🍬 Azúcar')">+ Azúcar ($3)</button>
-                <button class="dbtn" onclick="addDec('van',8,'dl-van','🌸 Vainilla')">+ Vainilla ($8)</button>
-                <button class="dbtn" onclick="addDec('ch',10,'dl-choc','🍫 Chocolate')">+ Choco ($10)</button>
+                <button class="dbtn" onclick="addDec('milk',5,'dl-milk','Leche')">+ Leche ($5)</button>
+                <button class="dbtn" onclick="addDec('sug',3,'dl-sugar','Azúcar')">+ Azúcar ($3)</button>
+                <button class="dbtn" onclick="addDec('van',8,'dl-van','Vainilla')">+ Vainilla ($8)</button>
+                <button class="dbtn" onclick="addDec('ch',10,'dl-choc','Chocolate')">+ Choco ($10)</button>
                 <button class="dbtn" onclick="resetDec()" style="border-color:rgba(248,113,113,.4);color:var(--red)">↺ Reset</button>
               </div>
               <div class="dec-stack" id="dstack">
@@ -344,11 +344,11 @@ tienda.<span class="fn">comprar</span>(laptop, juan)</code></pre>
                 <span id="tcnt" style="font-family:var(--mono);font-size:12px;color:var(--cyan);min-width:55px">1,000</span>
               </div>
               <div class="mbar-wrap">
-                <div class="mbar-lbl"><span>❌ Sin Flyweight</span><span id="mwout" style="color:var(--red)">100 MB</span></div>
+                <div class="mbar-lbl"><span>Sin Flyweight</span><span id="mwout" style="color:var(--red)">100 MB</span></div>
                 <div class="mbar"><div class="mbar-fill mbar-bad" id="bwout" style="width:10%"></div></div>
               </div>
               <div class="mbar-wrap" style="margin-top:6px">
-                <div class="mbar-lbl"><span>✅ Con Flyweight</span><span id="mwith" style="color:var(--green)">0.5 MB</span></div>
+                <div class="mbar-lbl"><span>Con Flyweight</span><span id="mwith" style="color:var(--green)">0.5 MB</span></div>
                 <div class="mbar"><div class="mbar-fill mbar-good" id="bwith" style="width:1%"></div></div>
               </div>
               <div id="forest" style="margin-top:8px;font-size:1.05rem;letter-spacing:1px;min-height:22px;color:var(--green)"></div>
@@ -396,13 +396,13 @@ tienda.<span class="fn">comprar</span>(laptop, juan)</code></pre>
               <div class="tags"><span class="badge">Netflix CDN</span><span class="badge">AWS CloudFront</span><span class="badge">Nginx</span><span class="badge">ORM Lazy</span></div>
             </div>
             <div class="demo">
-              <div class="dtitle">🔐 Demo — Control de Acceso</div>
+              <div class="dtitle">Demo — Control de Acceso</div>
               <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px">
-                <button class="rbtn sel" id="r-adm" onclick="selRole('Admin')">👑 Admin</button>
-                <button class="rbtn" id="r-usr" onclick="selRole('Usuario')">👤 Usuario</button>
-                <button class="rbtn" id="r-vis" onclick="selRole('Visitante')">👻 Visitante</button>
+                <button class="rbtn sel" id="r-adm" onclick="selRole('Admin')">Admin</button>
+                <button class="rbtn" id="r-usr" onclick="selRole('Usuario')">Usuario</button>
+                <button class="rbtn" id="r-vis" onclick="selRole('Visitante')">Visitante</button>
               </div>
-              <button class="dbtn" onclick="runProxy()" style="width:100%;margin-bottom:8px">🔑 Intentar acceso al servidor</button>
+              <button class="dbtn" onclick="runProxy()" style="width:100%;margin-bottom:8px">Intentar acceso al servidor</button>
               <div class="plog" id="plog"><span class="linfo">// Selecciona un rol e intenta acceder...</span></div>
             </div>
           </div>
@@ -425,7 +425,7 @@ tienda.<span class="fn">comprar</span>(laptop, juan)</code></pre>
             <span class="kw">if not</span> self._real:
                 self._real = <span class="fn">ServidorReal</span>()
             <span class="kw">return</span> self._real.<span class="fn">acceder</span>()
-        <span class="kw">return</span> <span class="str">"⛔ Acceso denegado"</span></code></pre>
+        <span class="kw">return</span> <span class="str">"Acceso denegado"</span></code></pre>
         </div>
       </div>
     </div>
@@ -444,25 +444,25 @@ tienda.<span class="fn">comprar</span>(laptop, juan)</code></pre>
             </thead>
             <tbody>
               <tr>
-                <td class="pc">🎨 Decorator</td>
+                <td class="pc">Decorator</td>
                 <td style="color:#94a3b8;font-size:.8rem">Añadir funciones dinámicamente</td>
                 <td style="color:var(--green);font-size:.78rem">Muchas combinaciones de funciones opcionales</td>
                 <td style="color:var(--purple);font-size:.78rem">Java I/O, Middleware HTTP</td>
               </tr>
               <tr>
-                <td class="pc">🏛️ Facade</td>
+                <td class="pc">Facade</td>
                 <td style="color:#94a3b8;font-size:.8rem">Simplificar interfaz compleja</td>
                 <td style="color:var(--green);font-size:.78rem">Subsistemas que el cliente no debe conocer</td>
                 <td style="color:var(--purple);font-size:.78rem">SDK de Stripe, Firebase</td>
               </tr>
               <tr>
-                <td class="pc">🪶 Flyweight</td>
+                <td class="pc">Flyweight</td>
                 <td style="color:#94a3b8;font-size:.8rem">Reducir uso de memoria</td>
                 <td style="color:var(--green);font-size:.78rem">Miles de objetos con estado compartido</td>
                 <td style="color:var(--purple);font-size:.78rem">Google Maps, motores de juego</td>
               </tr>
               <tr>
-                <td class="pc">🛡️ Proxy</td>
+                <td class="pc">Proxy</td>
                 <td style="color:#94a3b8;font-size:.8rem">Controlar acceso al objeto</td>
                 <td style="color:var(--green);font-size:.78rem">Seguridad, caché, lazy loading</td>
                 <td style="color:var(--purple);font-size:.78rem">CDN, Nginx, ORM</td>
@@ -637,10 +637,10 @@ function runProxy(){
     h+=`<span class="lok">✓ Permiso "leer" concedido</span>\n`;
     h+=ps.includes('escribir')?`<span class="lok">✓ Permiso "escribir" concedido</span>\n`:`<span class="linfo">ℹ Permiso "escribir": no disponible para este rol</span>\n`;
     h+=`<span class="linfo">→ Lazy loading: instanciando ServidorReal()...</span>\n`;
-    h+=`<span class="lok">✅ ACCESO CONCEDIDO → 📁 Datos sensibles retornados</span>`;
+    h+=`<span class="lok">ACCESO CONCEDIDO → Datos sensibles retornados</span>`;
   }else{
     h+=`<span class="lerr">✗ Ningún permiso encontrado para "${sRole}"</span>\n`;
-    h+=`<span class="lerr">⛔ ACCESO DENEGADO — ServidorReal no fue instanciado</span>`;
+    h+=`<span class="lerr">ACCESO DENEGADO — ServidorReal no fue instanciado</span>`;
   }
   document.getElementById('plog').innerHTML=h;
 }
