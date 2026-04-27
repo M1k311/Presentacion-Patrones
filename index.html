@@ -281,15 +281,15 @@ mi = <span class="fn">DecoradorVainilla</span>(mi)
               <div id="syslist">
                 <div class="sys" id="s-inv">
                   <div class="sdot"></div>
-                  <div><div style="font-size:.83rem;font-weight:700">📦 Subsistema Inventario</div><div class="sys-msg" id="m-inv">En espera...</div></div>
+                  <div><div style="font-size:.83rem;font-weight:700">Subsistema Inventario</div><div class="sys-msg" id="m-inv">En espera...</div></div>
                 </div>
                 <div class="sys" id="s-banco">
                   <div class="sdot"></div>
-                  <div><div style="font-size:.83rem;font-weight:700">💳 Subsistema Banco</div><div class="sys-msg" id="m-banco">En espera...</div></div>
+                  <div><div style="font-size:.83rem;font-weight:700">Subsistema Banco</div><div class="sys-msg" id="m-banco">En espera...</div></div>
                 </div>
                 <div class="sys" id="s-envio">
                   <div class="sdot"></div>
-                  <div><div style="font-size:.83rem;font-weight:700">🚚 Subsistema Envío</div><div class="sys-msg" id="m-envio">En espera...</div></div>
+                  <div><div style="font-size:.83rem;font-weight:700">Subsistema Envío</div><div class="sys-msg" id="m-envio">En espera...</div></div>
                 </div>
               </div>
               <button class="dbtn" onclick="runFacade()" style="width:100%;margin-top:10px;background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.3);color:var(--green)">
@@ -513,7 +513,7 @@ tienda.<span class="fn">comprar</span>(laptop, juan)</code></pre>
           <p id="fmsg" style="color:var(--muted);margin-bottom:20px"></p>
           <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
             <button class="dbtn" onclick="startQ()" style="padding:11px 22px">↺ Reintentar</button>
-            <button class="dbtn" onclick="go(0)" style="padding:11px 22px;border-color:rgba(168,85,247,.4);color:var(--purple)">🏠 Inicio</button>
+            <button class="dbtn" onclick="go(0)" style="padding:11px 22px;border-color:rgba(168,85,247,.4);color:var(--purple)">Inicio</button>
           </div>
         </div>
       </div>
@@ -616,7 +616,7 @@ function updFly(v){
   const trees=Math.min(28,Math.floor(n/400));
   document.getElementById('forest').textContent='🌲'.repeat(trees)+(n>11000?'...':'');
   const saved=Math.round((wo-wi)*10)/10;
-  document.getElementById('savings').textContent=saved>0?'💾 Ahorro: '+saved+' MB ('+Math.round((1-wi/wo)*100)+'% reducción)':'';
+  document.getElementById('savings').textContent=saved>0?'Ahorro: '+saved+' MB ('+Math.round((1-wi/wo)*100)+'% reducción)':'';
 }
 updFly(1000);
 
@@ -702,7 +702,7 @@ function endQ(){
   document.getElementById('qresult').style.display='block';
   document.getElementById('fscore').textContent=sc+' pts';
   const pct=sc/(Qs.length*10);
-  document.getElementById('fmsg').textContent=pct>=.8?'¡Excelente! Dominas los patrones estructurales 🏆':pct>=.5?'¡Buen trabajo! Repasa los conceptos que fallaste 🎯':'¡Sigue estudiando! Revisa los ejemplos interactivos 📚';
+  document.getElementById('fmsg').textContent=pct>=.8?'¡Excelente! Dominas los patrones estructurales':pct>=.5?'¡Buen trabajo! Repasa los conceptos que fallaste':'¡Sigue estudiando! Revisa los ejemplos interactivos';
 }
 </script>
 </body>
