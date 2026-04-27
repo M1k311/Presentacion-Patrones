@@ -75,6 +75,7 @@ body::before{
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
+  text-align:center;
 }
 .stitle{font-family:var(--disp);font-size:clamp(1.1rem,4vw,2rem);font-weight:700;color:var(--cyan);margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .stitle::before{content:'';display:block;width:4px;height:1.3em;background:linear-gradient(to bottom,var(--cyan),var(--purple));border-radius:2px;flex-shrink:0}
@@ -113,7 +114,11 @@ pre{background:#090d1a;border:1px solid rgba(0,212,255,.1);border-radius:0 0 8px
 
 /* ── ANIMATIONS ── */
 @keyframes glitch1{0%,100%{clip-path:inset(0 0 95% 0)}10%{clip-path:inset(0 0 70% 0);transform:translateX(-3px)}30%{clip-path:inset(30% 0 40% 0);transform:translateX(3px)}60%{clip-path:inset(70% 0 0 0);transform:translateX(-1px)}80%{clip-path:inset(90% 0 0 0)}}
-.gw{position:relative;display:inline-block}
+.gw{
+  position:relative;
+  display:block;   /* 🔥 antes era inline-block */
+  width:100%;      /* 🔥 agrega esto */
+}
 .gw::before,.gw::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;background:linear-gradient(135deg,var(--cyan),var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .gw::before{animation:glitch1 5s infinite;transform:translateX(-2px);opacity:.5;filter:hue-rotate(90deg)}
 .gw::after{animation:glitch1 5s infinite reverse .8s;transform:translateX(2px);opacity:.35;filter:hue-rotate(-90deg)}
@@ -180,6 +185,13 @@ pre{background:#090d1a;border:1px solid rgba(0,212,255,.1);border-radius:0 0 8px
 .qopt.no{border-color:var(--red);background:rgba(248,113,113,.1);color:var(--red)}
 .qscore{font-family:var(--mono);font-size:1.9rem;color:var(--cyan);text-align:center}
 
+@media(max-width:480px){
+  .big{
+    font-size:clamp(1.4rem,6vw,2.2rem);
+    line-height:1.2;
+    letter-spacing:-0.5px; /* 👈 ayuda en títulos largos */
+  }
+}
 /* ══════════════════════════════
    DESKTOP OVERRIDES  ≥ 700 px
 ══════════════════════════════ */
@@ -224,7 +236,9 @@ pre{background:#090d1a;border:1px solid rgba(0,212,255,.1);border-radius:0 0 8px
     <div class="slide slide-center active" data-i="0">
       <div class="inner" style="text-align:center">
         <div class="tag" style="margin-bottom:12px">UPIICSA · Ingeniería en Diseño · 4NV42</div>
-        <div class="gw big" data-text="PATRONES ESTRUCTURALES">PATRONES ESTRUCTURALES</div>
+        <div class="gw big" data-text="PATRONES ESTRUCTURALES">
+  PATRONES <br> ESTRUCTURALES
+</div>
         <p style="color:var(--muted);font-size:.82rem;margin:13px 0 18px;line-height:1.6">Cómo ensamblar objetos para crear estructuras<br>flexibles y eficientes en tiempo de ejecución.</p>
         <div style="width:40px;height:1px;background:linear-gradient(to right,var(--cyan),transparent);margin:0 auto 16px"></div>
         <p style="color:var(--muted);font-size:.8rem">Profesora: <strong style="color:var(--text)">Mares Romero Ma. Eugenia</strong></p>
