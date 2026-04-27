@@ -91,7 +91,7 @@ body::before{
 .stitle{font-family:var(--disp);font-size:clamp(1.1rem,4vw,2rem);font-weight:700;color:var(--cyan);margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .stitle::before{content:'';display:block;width:4px;height:1.3em;background:linear-gradient(to bottom,var(--cyan),var(--purple));border-radius:2px;flex-shrink:0}
 .tag{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:7px}
-.lbl{font-family:var(--mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:6px}
+.lbl{font-family:var(--mono);font-size:85px;letter-spacing:2px;text-transform:uppercase;color:var(--purple);margin-bottom:6px}
 
 /* ── CARDS / GRID ── */
 .card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px;transition:border-color .3s}
@@ -174,9 +174,13 @@ pre{background:#090d1a;border:1px solid rgba(0,212,255,.1);border-radius:0 0 8px
 /* ── INTRO GRID ── */
 .ig{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}
 .ic{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px;transition:border-color .3s}
-.ic-icon{font-size:1.3rem;margin-bottom:4px}
-.ic h3{color:var(--cyan);font-size:.82rem;margin-bottom:2px}
-.ic p{color:var(--muted);font-size:.7rem;line-height:1.45}
+.ic-icon{font-size:1.8rem;margin-bottom:4px}
+.ic h3{color:var(--cyan);font-size: clamp(1rem, 1.6vw, 1.2rem);margin-bottom:2px}
+.ic p{
+  color:var(--muted);
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  line-height:1.45;
+}
 
 /* ── SUMMARY TABLE ── */
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:10px}
@@ -359,7 +363,7 @@ mi = <span class="fn">DecoradorVainilla</span>(mi)
           <div>
             <div class="card">
               <div class="lbl">Concepto técnico</div>
-              <p style="font-size:.81rem;line-height:1.55;color:#94a3b8;margin-bottom:7px">Proporciona una <strong style="color:var(--text)">interfaz simplificada</strong> a un subsistema complejo. Desacopla al cliente de los detalles internos de implementación.</p>
+              <p style="font-size:.9rem;line-height:1.55;color:#94a3b8;margin-bottom:7px">Proporciona una <strong style="color:var(--text)">interfaz simplificada</strong> a un subsistema complejo. Desacopla al cliente de los detalles internos de implementación.</p>
               <div class="analogy"><strong>Analogía:</strong> Un operador de Call Center: hablas solo con una persona, que coordina en silencio con logística, pagos y almacén.</div>
               <div class="tags"><span class="badge">Stripe SDK</span><span class="badge">Firebase</span><span class="badge">Mercado Pago</span></div>
             </div>
