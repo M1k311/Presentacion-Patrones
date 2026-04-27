@@ -64,7 +64,7 @@ body::before{
 /* ── TYPOGRAPHY ── */
 .big{
   font-family:var(--disp);
-  font-size:clamp(1.6rem,6.5vw,4.5rem);
+  font-size:clamp(1.4rem,6vw,4.5rem);
   font-weight:800;
   line-height:1.1;
   letter-spacing:clamp(-0.5px,-0.3vw,-1px);
@@ -76,6 +76,7 @@ body::before{
   -webkit-text-fill-color:transparent;
   background-clip:text;
   text-align:center;
+  text-wrap:balance;
 }
 .stitle{font-family:var(--disp);font-size:clamp(1.1rem,4vw,2rem);font-weight:700;color:var(--cyan);margin-bottom:12px;display:flex;align-items:center;gap:10px}
 .stitle::before{content:'';display:block;width:4px;height:1.3em;background:linear-gradient(to bottom,var(--cyan),var(--purple));border-radius:2px;flex-shrink:0}
